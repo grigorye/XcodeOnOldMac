@@ -1,0 +1,16 @@
+//
+//  XcodeOnOldMac.xcconfig
+//  XcodeOnOldMac
+//
+//  Created by Grigory Entin on 17/03/2018.
+//  Copyright © 2018 Grigory Entin. All rights reserved.
+//
+
+XCODE_ON_OLD_MAC_ROOT = $(SRCROOT)/../XcodeOnOldMac
+LD = $(XCODE_ON_OLD_MAC_ROOT)/LD
+SWIFT_EXEC = $(XCODE_ON_OLD_MAC_ROOT)/SWIFT_EXEC
+TOOLCHAINS = swift
+
+XCODE_ON_OLD_MAC_EXTRA_FRAMEWORK_SEARCH_PATHS = $(HOME)/Applications/XcodeX.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks
+
+FRAMEWORK_SEARCH_PATHS = $(inherited) $(XCODE_ON_OLD_MAC_EXTRA_FRAMEWORK_SEARCH_PATHS)

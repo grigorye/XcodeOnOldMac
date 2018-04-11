@@ -1,0 +1,25 @@
+#! /usr/bin/perl -w
+
+use strict;
+use Getopt::Long qw(:config pass_through);
+
+my $sdk;
+GetOptions("isysroot=s" => \$sdk);
+
+my $updatedSDK;
+my $developerDir = $ENV{'HOME'} . "/Applications/XcodeX.app/Contents/Developer";
+if ($sdk =~ /iPhoneOS.platform/) {
+    $updatedSDK = $developerDir . '/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk';
+} elsif ($sdk =~ /iPhoneSimulator.platform/) {
+    $updatedSDK = $developerDir . '/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk';
+} elsif ($sdk =~ /MacOSX.platform/) {
+    $updatedSDK = $developerDir . '/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk';
+} else {
+    die;
+}
+
+system(
+    $developerDir . "/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang",
+    '-isysroot',
+    $sdk,
+    @ARGV)
